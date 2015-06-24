@@ -1,0 +1,12 @@
+*.log
+*.pid
+*.seed
+
+logs
+pids
+
+node_modules
+test/logs
+test/fixtures/*/build
+
+lib

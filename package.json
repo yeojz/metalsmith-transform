@@ -1,0 +1,24 @@
+{
+  "name": "metalsmith-transform",
+  "version": "1.0.0",
+  "description": "Append or Prepend or Transform the file data in a metalsmith pipeline",
+  "main": "lib/index.js",
+  "scripts": {
+    "build": "babel ./src --out-dir ./lib",
+    "postinstall": "npm run build",
+    "pretest": "npm run build",
+    "test": "mocha"
+  },
+  "author": "Gerald Yeo <contact@fusedthought.com>",
+  "license": "MIT",
+  "dependencies": {
+    "async": "^1.2.1",
+    "babel": "^5.6.5",
+    "multimatch": "^2.0.0"
+  },
+  "devDependencies": {
+    "metalsmith": "^1.7.0",
+    "mocha": "^2.2.5",
+    "sync-exec": "^0.5.0"
+  }
+}
