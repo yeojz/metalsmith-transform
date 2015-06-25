@@ -57,7 +57,14 @@ export default function(opt = {}){
           break;
 
         case 'transform':
-          let results = opt(data, metalsmith);
+          let results;
+
+          if (typeof opt === 'function'){
+            results = opt(data, metalsmith);
+          } else {
+            results = options.value(data, metalsmith);
+          }
+
           files[file] = results;
           break;
       }

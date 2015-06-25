@@ -68,7 +68,7 @@ describe('metalsmith-transform', function(){
       });
   });
 
-  it('transform', function(done){
+  it('transform (fn)', function(done){
     new Metalsmith('test/fixtures/basic')
       .use(transform(function(data, m){
         data.contents = new Buffer(m._source + ' ' + m._destination);
@@ -88,8 +88,31 @@ describe('metalsmith-transform', function(){
       });
   });
 
+  it('transform (options)', function(done){
+    new Metalsmith('test/fixtures/basic')
+      .use(transform({
+        action: 'transform',
+        value: function(data, m){
+          data.contents = new Buffer(m._source + ' ' + m._destination);
+          return data;
+        }
+      }))
+      .build(function(err){
+        if (err){
+          return done(err);
+        }
 
-  it('append (filtered)', function(done){
+        var result = fs.readFileSync('test/fixtures/basic/build/test1.txt', 'utf8');
+        if (result !== 'src build'){
+          return done(result);
+        }
+
+        done();
+      });
+  });
+
+
+  it('filtered', function(done){
     new Metalsmith('test/fixtures/filter')
       .use(transform({
         action: 'append',

@@ -13,6 +13,17 @@
     "type": "git",
     "url": "https://github.com/yeojz/metalsmith-transform.git"
   },
+  "keywords": [
+    "metalsmith",
+    "static-site",
+    "generator",
+    "append",
+    "prepend",
+    "wrap",
+    "transform",
+    "metalsmith-plugin",
+    "custom-functions"
+  ],
   "author": "Gerald Yeo <contact@fusedthought.com>",
   "license": "MIT",
   "bugs": {

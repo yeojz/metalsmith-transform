@@ -1,10 +1,16 @@
 # metalsmith-transform
-Contents manipulation plugin for metalsmith.
+File object manipulation plugin for metalsmtih.
+
+[![npm](https://img.shields.io/npm/v/metalsmith-transform.svg)](https://www.npmjs.com/package/metalsmith-transform)
+[![Build Status](https://img.shields.io/travis/yeojz/metalsmith-transform.svg)](https://travis-ci.org/yeojz/metalsmith-transform)
+[![Code Climate](https://img.shields.io/codeclimate/github/yeojz/metalsmith-transform.svg)](https://codeclimate.com/github/yeojz/metalsmith-transform)
 
 ## About
-`metalsmith-transform` is a [metalsmith](http://http://www.metalsmith.io/) plugin which allows manipulation of field in the metalsmith pipeline.
+`metalsmith-transform` is a [metalsmith](http://http://www.metalsmith.io/) plugin which custom functions to manipulate the file object in a metalsmith pipeline. 
 
-Methods are inspired by [gulp-insert](https://www.npmjs.com/package/gulp-insert).
+Furthermore, instead of writing a full plugin, you can just pass in the transformation function into this instead.
+
+String methods are inspired by [gulp-insert](https://www.npmjs.com/package/gulp-insert).
 
 
 ## Usage
@@ -16,6 +22,23 @@ npm install metalsmith-transform
 ### API
 ```js
 import transform from 'metalsmith-transform';
+```
+
+You can pass in an object or a function as an argument. i.e.
+
+```js
+transform(function(fileObject, metalsmithData)){
+  return fileObject
+})
+
+// or
+
+
+transform({
+  action: '', // append / prepend / wrap / transform
+  value: '', // string | function (only if using transform)
+  pattern: '*.md'
+})
 ```
 
 
@@ -33,7 +56,23 @@ import transform from 'metalsmith-transform';
 
 Since JSON does not take functions, only `append`, `prepend` and `wrap` are accepted.
 
+
 ## Actions
+
+
+### Transform
+
+Calls a function with the `file` object and `metalsmith` instance.
+Function should return the modified contents of the file.
+
+```js
+metalsmith.use(function(data, m){
+  let contents = data.contents.toString().toUpperCase();
+  data.contents = new Buffer(contents);
+
+  return data;
+})); 
+```
 
 ### Append
 
@@ -70,19 +109,7 @@ metalsmith.use(transform({
 }));
 ```
 
-### Transform
 
-Calls a function with the `file` object and `metalsmith` instance.
-Function should return the modified contents of the file.
-
-```js
-metalsmith.use(function(data, m){
-  let contents = data.contents.toString().toUpperCase();
-  data.contents = new Buffer(contents);
-
-  return data;
-})); 
-```
 
 
 
