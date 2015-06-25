@@ -51,9 +51,7 @@ transform({
 }
 ```
 
-*A Note on CLI Usage*
-
-Since JSON does not take functions, only `append`, `prepend` and `wrap` are accepted.
+**Note on CLI Usage:** Since JSON does not take functions, only `append`, `prepend` and `wrap` actions are accepted.
 
 
 ## Actions
