@@ -26,18 +26,17 @@ import transform from 'metalsmith-transform';
 You can pass in an object or a function as an argument. i.e.
 
 ```js
-transform(function(fileObject, metalsmithData)){
+metalsmith.use(transform(function(fileObject, metalsmithData){
   return fileObject
-})
+}));
 
 // or
 
-
-transform({
+metalsmith.use(transform({
   action: '', // append / prepend / wrap / transform
   value: '', // string | function (only if using transform)
   pattern: '*.md'
-})
+}));
 ```
 
 
