@@ -5,7 +5,7 @@ File object manipulation plugin for metalsmith.
 [![Build Status](https://img.shields.io/travis/yeojz/metalsmith-transform.svg)](https://travis-ci.org/yeojz/metalsmith-transform)
 
 ## About
-`metalsmith-transform` is a [metalsmith](http://http://www.metalsmith.io/) plugin which custom functions to manipulate the file object in a metalsmith pipeline. 
+`metalsmith-transform` is a [metalsmith](http://http://www.metalsmith.io/) plugin which allows the use of custom functions to manipulate the file object in a metalsmith pipeline. 
 
 Furthermore, instead of writing a full plugin, you can just pass in the transformation function into this instead.
 
