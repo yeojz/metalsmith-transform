@@ -5,8 +5,8 @@
   "main": "lib/index.js",
   "scripts": {
     "build": "babel ./src --out-dir ./lib",
-    "postinstall": "npm run build",
     "pretest": "npm run build",
+    "prepublish": "npm run build",
     "test": "mocha"
   },
   "repository": {
@@ -32,10 +32,10 @@
   "homepage": "https://github.com/yeojz/metalsmith-transform",
   "dependencies": {
     "async": "^1.2.1",
-    "babel": "^5.6.5",
     "multimatch": "^2.0.0"
   },
   "devDependencies": {
+    "babel": "^5.6.5",
     "eslint": "^0.23.0",
     "metalsmith": "^1.7.0",
     "mocha": "^2.2.5",

@@ -3,7 +3,6 @@ File object manipulation plugin for metalsmith.
 
 [![npm](https://img.shields.io/npm/v/metalsmith-transform.svg)](https://www.npmjs.com/package/metalsmith-transform)
 [![Build Status](https://img.shields.io/travis/yeojz/metalsmith-transform.svg)](https://travis-ci.org/yeojz/metalsmith-transform)
-[![Code Climate](https://img.shields.io/codeclimate/github/yeojz/metalsmith-transform.svg)](https://codeclimate.com/github/yeojz/metalsmith-transform)
 
 ## About
 `metalsmith-transform` is a [metalsmith](http://http://www.metalsmith.io/) plugin which custom functions to manipulate the file object in a metalsmith pipeline. 
