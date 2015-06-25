@@ -65,7 +65,7 @@ Calls a function with the `file` object and `metalsmith` instance.
 Function should return the modified contents of the file.
 
 ```js
-metalsmith.use(function(data, m){
+metalsmith.use(transform(function(data, m){
   let contents = data.contents.toString().toUpperCase();
   data.contents = new Buffer(contents);
 
