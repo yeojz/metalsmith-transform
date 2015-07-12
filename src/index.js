@@ -10,14 +10,14 @@ export default function(opt = {}){
   // Pattern set to all since transform function should do the filtering.
   if (typeof opt === 'function'){
     options.action = 'transform';
-    options.pattern = '*';
+    options.pattern = '**/*';
 
 
   // If any other action type,
   // Read and set defaults
   } else {
     options.action = opt.action || 'append';
-    options.pattern = opt.pattern || '*';
+    options.pattern = opt.pattern || '**/*';
     options.value = opt.value || '';
   }
 
