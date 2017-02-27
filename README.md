@@ -1,4 +1,6 @@
 # metalsmith-transform
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/yeojz/metalsmith-transform.svg)](https://greenkeeper.io/)
 File object manipulation plugin for metalsmith.
 
 [![npm](https://img.shields.io/npm/v/metalsmith-transform.svg)](https://www.npmjs.com/package/metalsmith-transform)
