@@ -31,14 +31,14 @@
   },
   "homepage": "https://github.com/yeojz/metalsmith-transform",
   "dependencies": {
-    "async": "^1.2.1",
+    "async": "^2.1.5",
     "multimatch": "^2.0.0"
   },
   "devDependencies": {
-    "babel": "^5.6.5",
-    "eslint": "^0.23.0",
-    "metalsmith": "^1.7.0",
-    "mocha": "^2.2.5",
-    "sync-exec": "^0.5.0"
+    "babel": "^6.23.0",
+    "eslint": "^3.16.1",
+    "metalsmith": "^2.3.0",
+    "mocha": "^3.2.0",
+    "sync-exec": "^0.6.2"
   }
 }
