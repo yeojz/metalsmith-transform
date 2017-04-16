@@ -38,8 +38,8 @@ import transform from 'metalsmith-transform';
 You can pass in an object or a function as an argument. i.e.
 
 ```js
-metalsmith.use(transform(function(fileObject, metalsmithData){
-  return fileObject
+metalsmith.use(transform(function(fileObject, metalsmithData) {
+  return fileObject;
 }));
 
 // or
@@ -50,7 +50,6 @@ metalsmith.use(transform({
   pattern: '*.md'
 }));
 ```
-
 
 ### CLI
 
@@ -68,7 +67,9 @@ metalsmith.use(transform({
 
 ## Available Actions
 
-By default, if an action is not defined, `append` is assumed.
+By default, if an action is not defined, `append` is used.
+
+In the examples below, assume that the content in your files are "I am".
 
 ### Transform
 
@@ -82,6 +83,8 @@ metalsmith.use(transform(function(data, m){
 
   return data;
 }));
+
+// result: I AM
 ```
 
 ### Append
@@ -89,11 +92,13 @@ metalsmith.use(transform(function(data, m){
 Appends a string onto the contents.
 
 ```js
-// Appends 'world' to the contents of every file
+// Appends 'world' to the content of every file
 metalsmith.use(transform({
   action: 'append',
   value: 'world'
 }));
+
+// result: I am world
 ```
 
 ### Prepend
@@ -101,11 +106,13 @@ metalsmith.use(transform({
 Prepends a string onto the contents.
 
 ```js
-// Prepends 'Hello' to the contents of every file
+// Prepends 'Hello' to the content of every file
 metalsmith.use(transform({
   action: 'prepend',
   value: 'hello'
 }));
+
+// result: hello I am
 ```
 
 ### Wrap
@@ -113,12 +120,18 @@ metalsmith.use(transform({
 Wraps the contents with two strings.
 
 ```js
-// prepends 'hello' and appends 'world' to the contents
+// prepends 'hello' and appends 'world' to the content of every file
 metalsmith.use(transform({
   action: 'wrap',
   value: ['hello', 'world']
 }));
+
+// result: hello I am world
 ```
+
+## License
+
+`metalsmith-transform` is [MIT licensed](./LICENSE)
 
 [npm-badge]: https://img.shields.io/npm/v/metalsmith-transform.svg?style=flat-square
 [npm-link]: https://www.npmjs.com/package/metalsmith-transform
