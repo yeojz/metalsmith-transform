@@ -1,13 +1,10 @@
 # metalsmith-transform
 
-[![Greenkeeper badge](https://badges.greenkeeper.io/yeojz/metalsmith-transform.svg)](https://greenkeeper.io/)
-File object manipulation plugin for metalsmith.
-
 [![npm](https://img.shields.io/npm/v/metalsmith-transform.svg)](https://www.npmjs.com/package/metalsmith-transform)
 [![Build Status](https://img.shields.io/travis/yeojz/metalsmith-transform.svg)](https://travis-ci.org/yeojz/metalsmith-transform)
 
 ## About
-`metalsmith-transform` is a [metalsmith](http://http://www.metalsmith.io/) plugin which allows the use of custom functions to manipulate the file object in a metalsmith pipeline. 
+`metalsmith-transform` is a [metalsmith](http://http://www.metalsmith.io/) plugin which allows the use of custom functions to manipulate the file object in a metalsmith pipeline.
 
 Furthermore, instead of writing a full plugin, you can just pass in the transformation function into this instead.
 
@@ -69,7 +66,7 @@ metalsmith.use(transform(function(data, m){
   data.contents = new Buffer(contents);
 
   return data;
-})); 
+}));
 ```
 
 ### Append
@@ -81,7 +78,7 @@ Appends a string onto the contents.
 metalsmith.use(transform({
   action: 'append',
   value: 'world'
-})); 
+}));
 ```
 
 ### Prepend
@@ -106,8 +103,3 @@ metalsmith.use(transform({
   value: ['hello', 'world']
 }));
 ```
-
-
-
-
-

@@ -1,4 +1,3 @@
-
 import multimatch from 'multimatch';
 import {each} from 'async';
 
