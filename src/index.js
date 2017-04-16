@@ -1,7 +1,7 @@
 import multimatch from 'multimatch';
 import {each} from 'async';
 
-export default function(opt = {}){
+function transform(opt = {}) {
 
   let options = {};
 
@@ -83,3 +83,5 @@ export default function(opt = {}){
     }, done); // end each
   };
 }
+
+module.exports = transform;
