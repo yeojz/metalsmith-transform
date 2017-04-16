@@ -10,17 +10,17 @@ general:
       - gh-pages
 test:
   pre:
-    - npm run clean
+    - yarn clean
   override:
-    - npm run test
-    - npm run lint
+    - yarn test
+    - yarn lint
 deployment:
   release:
     tag: /^v[0-9]+(\.[0-9]+)*$/
     owner: yeojz
     commands:
-      - npm run clean
-      - npm run build
+      - yarn clean
+      - yarn build
       - echo -e "$NPM_USER\n$NPM_PASS\n$NPM_EMAIL" | npm login
       - npm publish
       - npm logout
