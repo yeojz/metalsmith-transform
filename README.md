@@ -1,9 +1,13 @@
 # metalsmith-transform
 
-[![npm](https://img.shields.io/npm/v/metalsmith-transform.svg)](https://www.npmjs.com/package/metalsmith-transform)
-[![Build Status](https://img.shields.io/travis/yeojz/metalsmith-transform.svg)](https://travis-ci.org/yeojz/metalsmith-transform)
+> Transform or manipulate file objects in the metalsmith pipeline
+
+[![npm][npm-badge]][npm-link]
+[![Build Status][circle-badge]][circle-link]
+[![Coverage Status][coveralls-badge]][coveralls-link]
 
 ## About
+
 `metalsmith-transform` is a [metalsmith](http://http://www.metalsmith.io/) plugin which allows the use of custom functions to manipulate the file object in a metalsmith pipeline.
 
 Furthermore, instead of writing a full plugin, you can just pass in the transformation function into this instead.
@@ -11,13 +15,22 @@ Furthermore, instead of writing a full plugin, you can just pass in the transfor
 String methods are inspired by [gulp-insert](https://www.npmjs.com/package/gulp-insert).
 
 
+## Installation
+
+```
+$ npm install metalsmith-transform
+```
+
+or 
+
+```
+$ yarn add metalsmith-transform
+```
+
 ## Usage
 
-```
-npm install metalsmith-transform
-```
-
 ### API
+
 ```js
 import transform from 'metalsmith-transform';
 ```
@@ -40,6 +53,7 @@ metalsmith.use(transform({
 
 
 ### CLI
+
 ```json
 "plugins": {
   "metalsmith-transform": {
@@ -52,8 +66,9 @@ metalsmith.use(transform({
 **Note on CLI Usage:** Since JSON does not take functions, only `append`, `prepend` and `wrap` actions are accepted.
 
 
-## Actions
+## Available Actions
 
+By default, if an action is not defined, `append` is assumed.
 
 ### Transform
 
@@ -92,6 +107,7 @@ metalsmith.use(transform({
   value: 'hello'
 }));
 ```
+
 ### Wrap
 
 Wraps the contents with two strings.
@@ -103,3 +119,12 @@ metalsmith.use(transform({
   value: ['hello', 'world']
 }));
 ```
+
+[npm-badge]: https://img.shields.io/npm/v/metalsmith-transform.svg?style=flat-square
+[npm-link]: https://www.npmjs.com/package/metalsmith-transform
+
+[circle-badge]: https://img.shields.io/circleci/project/github/yeojz/metalsmith-transform/master.svg?style=flat-square
+[circle-link]: https://circleci.com/gh/yeojz/metalsmith-transform.svg
+
+[coveralls-badge]: https://img.shields.io/coveralls/yeojz/metalsmith-transform/master.svg?style=flat-square
+[coveralls-link]: https://coveralls.io/github/yeojz/metalsmith-transform

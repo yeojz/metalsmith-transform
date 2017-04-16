@@ -1,86 +1,82 @@
 import multimatch from 'multimatch';
-import {each} from 'async';
+import each from 'async/each';
 
-function transform(opt = {}) {
-
-  let options = {};
+function setOptions(opt) {
 
   // Set action to transform if `function` is passed in.
   // Pattern set to all since transform function should do the filtering.
-  if (typeof opt === 'function'){
-    options.action = 'transform';
-    options.pattern = '**/*';
-
+  if (typeof opt === 'function') {
+    return {
+      action: 'transform',
+      callback: opt,
+      pattern: '**/*'
+    }
+  }
 
   // If any other action type,
   // Read and set defaults
-  } else {
-    options.action = opt.action || 'append';
-    options.pattern = opt.pattern || '**/*';
-    options.value = opt.value || '';
+  return {
+    action: opt.action || 'append',
+    pattern: opt.pattern || '**/*',
+    value: opt.value || ''
+  }
+}
+
+function applyStandardOperations(contents, options) {
+  // Appends the string to the contents
+  if (options.action === 'append') {
+    return contents + options.value;
   }
 
+  // Prepends the string to the contents
+  if (options.action === 'prepend') {
+    return options.value + contents;
+  }
 
-  // Actual Return
+  // Prepends arr[0] and appends arr[1] to the contents
+  // Will prepend by default.
+  if (options.action === 'wrap') {
+    if (Array.isArray(options.value)) {
+      const pre = options.value[0] || '';
+      const post = options.value[1] || '';
+      return pre + contents + post;
+    }
+
+    return options.value + contents;
+  }
+
+  return contents;
+}
+
+function applyTransform(data, options, metalsmith) {
+  if (typeof options.callback === 'function'){
+    return options.callback(data, metalsmith);
+  }
+  return options.value(data, metalsmith);
+}
+
+function applyActions(data, options, metalsmith) {
+  if (options.action === 'transform') {
+    return applyTransform(data, options, metalsmith);
+  }
+
+  let contents = data.contents.toString();
+  contents = applyStandardOperations(contents, options);
+  data.contents = new Buffer(contents);
+  return data;
+}
+
+function transform(opt = {}) {
+  let options = setOptions(opt == null ? {} : opt);
+
   return (files, metalsmith, done) => {
+    const matchedFiles = multimatch(Object.keys(files), options.pattern);
 
-    each(multimatch(Object.keys(files), options.pattern), (file, callback) => {
-      let data = files[file];
-      let contents = data.contents.toString();
-
-      switch(options.action){
-
-        // Appends the string to the contents
-        case 'append': {
-          contents = contents + options.value;
-          break;
-        }
-
-        // Prepends the string to the contents
-        case 'prepend': {
-          contents = options.value + contents;
-          break;
-        }
-
-        // Prepends arr[0] and appends arr[1] to the contents
-        // Will prepend by default.
-        case 'wrap': {
-
-          // Check for Array.
-          if (Array.isArray(options.value)){
-            contents = (options.value[0] || '') + contents;
-            contents = contents + (options.value[1] || '');
-
-          // Prepends as default
-          } else {
-            contents = options.value + contents;
-          }
-          break;
-        }
-        case 'transform': {
-          let results;
-
-          if (typeof opt === 'function'){
-            results = opt(data, metalsmith);
-          } else {
-            results = options.value(data, metalsmith);
-          }
-
-          files[file] = results;
-          break;
-        }
-      }
-
-
-      // Common Processing
-      if (options.action !== 'transform'){
-        data.contents = new Buffer(contents);
-      }
-
-
+    each(matchedFiles, (file, callback) => {
+      const data = Object.assign({}, files[file]);
+      files[file] = applyActions(data, options, metalsmith);
       callback();
-
-    }, done); // end each
+    }, done);
   };
 }
 
