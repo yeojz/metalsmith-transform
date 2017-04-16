@@ -140,4 +140,3 @@ describe('metalsmith-transform', function(){
   });
 
 });
-

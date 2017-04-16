@@ -1,8 +1,7 @@
-
 import multimatch from 'multimatch';
 import {each} from 'async';
 
-export default function(opt = {}){
+function transform(opt = {}) {
 
   let options = {};
 
@@ -32,18 +31,20 @@ export default function(opt = {}){
       switch(options.action){
 
         // Appends the string to the contents
-        case 'append':
+        case 'append': {
           contents = contents + options.value;
           break;
+        }
 
         // Prepends the string to the contents
-        case 'prepend':
+        case 'prepend': {
           contents = options.value + contents;
           break;
+        }
 
         // Prepends arr[0] and appends arr[1] to the contents
         // Will prepend by default.
-        case 'wrap':
+        case 'wrap': {
 
           // Check for Array.
           if (Array.isArray(options.value)){
@@ -55,8 +56,8 @@ export default function(opt = {}){
             contents = options.value + contents;
           }
           break;
-
-        case 'transform':
+        }
+        case 'transform': {
           let results;
 
           if (typeof opt === 'function'){
@@ -67,6 +68,7 @@ export default function(opt = {}){
 
           files[file] = results;
           break;
+        }
       }
 
 
@@ -81,3 +83,5 @@ export default function(opt = {}){
     }, done); // end each
   };
 }
+
+module.exports = transform;
