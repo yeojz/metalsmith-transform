@@ -33,7 +33,7 @@
   },
   "homepage": "https://github.com/yeojz/metalsmith-transform",
   "dependencies": {
-    "async": "^2.1.5",
+    "async": "^2.4.1",
     "multimatch": "^2.0.0"
   },
   "devDependencies": {
